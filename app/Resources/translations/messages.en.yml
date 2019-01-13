@@ -1,0 +1,48 @@
+user :
+      btn :
+        save : Save
+        create : New User
+        edit : Edit
+        view : view
+        listUsers : Back To List
+        cancel : cancel
+        generatePassword : Generate Password
+
+      label :
+        username: Username
+        email : Email
+        phoneNumber : Phone Number
+        TypeOfContrat : Type Of Contrat
+        HighringDate : Highring Date
+        rib : Rib
+        cnss : Cnss Number
+        enabled : Enabled
+        category : Category
+        roles: Roles
+        password : Password
+        repeatpassowrd : Repeat Passowrd
+        uploadfile : Upload File
+
+      input :
+        showpassword: Show Password
+      li :
+      home: Home
+      manageusers : Manage Users
+      alldirector: All Directors
+      allresponsible : All Responsibles
+      allemployees: All Employees
+      managecategories: Manage Categories
+      allcategories: All Categories
+      managerequests:  Manage Requests
+      allrequests : All Requests
+
+
+
+
+
+
+
+
+
+
+

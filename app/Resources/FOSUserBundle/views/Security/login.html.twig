@@ -1,0 +1,50 @@
+{% trans_default_domain 'FOSUserBundle' %}
+{% extends "::main.html.twig" %}
+
+{% block fos_user_content %}
+<div class="container">
+    {% if error %}
+        <div class="row" style="margin-top: 20px">
+            <div class="col-md-4 col-md-offset-4">
+                <div class="alert alert-danger text-center">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            </div>
+        </div>
+    {% endif %}
+
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+        <div class="login_wrapper">
+                <div class="animate form login_form">
+                    <section class="login_content" style="padding: 0px 0 0; !important;">
+                        <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+                            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                            <div class="login-container">
+                                <h1>Login Form</h1>
+                                <form>
+                                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" />
+                                    <input type="password" id="password" name="_password" required="required" class="form-control" />
+
+                                    <div>
+                                        <input type="submit" class="btn btn-default submit" id="_submit" name="_submit" value="LogIn" />
+                                        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                        <labe>Remember Me</labe>
+
+                                    </div>
+                                    <div class="clearfix"></div>
+
+                                    <div class="separator">
+                                        <div class="clearfix"></div>
+                                        <br />
+                                        <div>
+                                            <p>Lézard-Com ©2018 All Rights Reserved</p>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </form>
+                    </section>
+                </div>
+    </div>
+</div>
+{% endblock fos_user_content %}

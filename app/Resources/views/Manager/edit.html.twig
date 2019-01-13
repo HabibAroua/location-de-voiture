@@ -1,0 +1,87 @@
+{% extends 'base.html.twig' %}
+{% block title %}Edit User{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Modifier Utilisateur</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+                        <div class="profile_img">
+                            <div id="crop-avatar">
+                                <!-- Current avatar -->
+                                {% if user.image is null %}
+                                    <img class="img-responsive avatar-view" src="{{ asset('uploads/images/no_avatar.jpg') }}" alt="Avatar">
+                                {% else %}
+                                    <img class="img-responsive avatar-view" src="{{ asset( '/uploads/images/'~user.id ~'/' ~ user.image ) }}" alt="Avatar">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-sm-9 col-xs-12">
+                    {{ form_start(form,{'attr': {'class':'form-horizontal form-label-left'}}) }}
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Username : </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.username,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12','id':"name"}}) }}
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Email : </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.email,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Numéro de téléphone : </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.phoneNumber,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Active : </label>
+                        <div class="col-md-9 col-sm-9 col-xs-12">
+                            {{ form_widget(form.enabled,{'attr': {'class':'flat'}} ) }}
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Image :</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.file,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12'}} ) }}
+                        </div>
+                    </div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary">Annuler</button>
+                            <button id="send" type="submit" class="btn btn-success">Enregistrer</button>
+
+                        </div>
+                    </div>
+                    </div>
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+
+

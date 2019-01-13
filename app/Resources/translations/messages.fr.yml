@@ -1,0 +1,94 @@
+utilisateur:
+      btn :
+        nouveau : Nouveau Utilisateur
+        enregistrer : Enregistrer
+        modifier : Modifier
+        voir : Voir
+        listdesutilisateurs : Retour à La Liste
+        annuler : Annuler
+        generermotdepasse : Generer Mot De Passe
+        supprimer :  Supprimer
+      label :
+        nom: Nom
+        email : Email
+        cin : Carte D'identité
+        numeroTelephone : Numéro De Téléphone
+        typeContrat : Type De Contrat
+        nbrJoursContrat : Nombre de solde annuel
+        dateEmbauche : Date D'embauche
+        rib : Rib
+        cnss : Numéro Cnss
+        active : Active
+        categorie : Choisir Une Categorie
+        roles: Roles
+        motDePasse : Mot De Passe
+        repetemotdepasse : Confirmer Mot De Passe
+        televerserfichier : Téléverser Une Image
+
+      input :
+        voirmotdepasse: Afficher Mot De Passe
+      li :
+        accueil: Accueil
+        gestionutilisateurs : Gestion Des Employées
+        directeurs: Directeurs
+        responsables : Responsables
+        employees: Employées
+        gestioncategories: Gestion D'équipes
+        categories: Categories
+        gestionrequetes:  Gestion Des Demandes
+        requetes : Requêtes
+      th :
+        nom : Nom
+        email : Email
+        category : Categorie
+        ajoutepar : Ajouté Par
+        modifier : Modifier
+        supprimer : Supprimer
+category :
+      btn :
+        annuler : Annuler
+        enregistrer :  Enregistrer
+        retour : Retour à La Liste
+        modifier : Modifier
+        nouveau : Nouvelle Catégorie
+        supprimer : Supprimer
+      label :
+        titre : Titre
+        description : Description
+      h2 :
+        nouveaucategory : Ajouter Une Nouvelle Catégorie
+      th :
+        titre : Titre
+        description : Description
+        modifier : Modifier
+        supprimer : Supprimer
+requete :
+      label :
+        sujet : Sujet
+        description : Description
+        datedebut : Date Début
+        datefin : Date Fin
+        typeconge : Type De Congé
+        uploadfile : Téléverser Un Fichier
+      btn :
+        annuler : Annuler
+        enregistrer : Enregistrer
+        retourliste : Retour à La Liste
+        modifier : Modifier
+        details: Détails
+        supprimer : Supprimer
+        ajouter : Nouvelle demande
+
+      th :
+        nom : Nom
+        status : Status
+        nombrejours : Nombre de Jours
+        datedebut: Date Début
+        datefin : Date Fin
+        edit : Edit
+        details : Details
+        supprimer : Supprimer
+        type: Motif
+
+
+

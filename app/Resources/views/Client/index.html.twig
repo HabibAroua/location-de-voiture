@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+{% block title %}Utilisateurs{% endblock %}
+
+{% block stylesheets %}
+    <link href="{{ asset('assets/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css') }}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.css">
+{% endblock %}
+{% block body %}
+
+    <div class="x_panel">
+        <div class="x_title">
+
+            <div class="col-md-10">
+                <h2>Liste Des  Clients</h2>
+            </div>
+            <div class="col-md-2">
+                <a href="{{ path('user-create') }}" class="btn  btn-primary"><i class="fa fa-plus"></i> Nouveau Client</a>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <div class="table-responsive">
+                <table class="table table-striped jambo_table bulk_action table-responsive">
+                    <thead>
+                    <tr>
+                        <th>Nom & prénom</th>
+                        <th>Email</th>
+                        <th>Numéro de téléphone</th>
+                        <th>Modifier</th>
+                        <th>Supprimer</th>
+                    </tr>
+                    </thead>
+
+
+                    <tbody>
+                    {% for client in clients %}
+                        <tr>
+                            <td>{{ client.username }}</td>
+                            <td>{{ client.email }}</td>
+                            <td>{{ client.phoneNumber }}</td>
+                            <td>
+                                <a href="{{ path('user-edit', {'id': client.id}) }}" class="btn btn-primary"><i class="fa fa-edit"></i> Modifier</a>
+                            </td>
+                            <td>
+                                <form action="{{ path('user-delete', {id: client.id}) }}" method="post" data-confirmation="true" id="delete-form">
+                                    <input type="hidden" name="token" value="{{ csrf_token('delete') }}" />
+                                    <button type="submit" class="btn btn-danger" data-toggle="confirmation" data-message="Are you sure to delete this User?" >
+                                        <i class="fa fa-trash"></i> Supprimer
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts  %}
+    <script src="{{ asset('assets/vendors/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/vendors/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script>
+        $('[data-toggle="confirmation"][data-message]').on('click', function (event) {
+            var message = $(this).data('message');
+
+            return confirm(message) || event.preventDefault();
+        });
+    </script>
+{% endblock %}
