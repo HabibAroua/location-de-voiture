@@ -62,7 +62,9 @@ class VoitureType extends AbstractType
                 'required' => true
             ],
             'label' => 'Constructeur :*'
-            ]);
+            ])
+            ->add('file');
+
 
 
     }

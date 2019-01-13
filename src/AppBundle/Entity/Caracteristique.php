@@ -32,6 +32,11 @@ class Caracteristique
     private  $nbrChevaux;
 
     /**
+     * @ORM\Column(type="float",nullable =true)
+     */
+    private  $prix;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Voiture", inversedBy="caracteristiques")
      * @ORM\JoinColumn(name="voiture_id", referencedColumnName="id")
      */
@@ -78,6 +83,23 @@ class Caracteristique
     {
         $this->nbrChevaux = $nbrChevaux;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * @param mixed $prix
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+    }
+
 
     /**
      * @return mixed
