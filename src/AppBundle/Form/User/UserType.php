@@ -2,6 +2,7 @@
 
 namespace AppBundle\Form\User;
 
+use AppBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -9,15 +10,12 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\DateType;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 class UserType extends AbstractType
-{   /**
+{
+    /**
      * {@inheritdoc}
      */
 
@@ -26,18 +24,16 @@ class UserType extends AbstractType
         $user = $options["data"];
         $roles = $user->getRoles();
         $array_roles = [];
-            $array_roles = ["MANAGER"=>"ROLE_MANAGER","CLIENT" => "ROLE_CLIENT"];
+        $array_roles = ["MANAGER" => "ROLE_MANAGER", "CLIENT" => "ROLE_CLIENT"];
 
         $builder
-
-
-            ->add('username', TextType::class,[
+            ->add('username', TextType::class, [
                 'attr' => [
                     'autofocus' => false,
                     'class' => 'col-md-6 col-sm-6 col-xs-12',
                     'required' => true
                 ],
-                'label' => 'UserName :*'  ,
+                'label' => 'UserName :*',
 
             ])
             ->add('email', EmailType::class, [
@@ -53,7 +49,7 @@ class UserType extends AbstractType
                     'translation_domain' => 'FOSUserBundle',
                     'attr' => array(
                         'autocomplete' => 'new-password',
-                        'required' =>false
+                        'required' => false
                     ),
                 ),
 
@@ -63,44 +59,26 @@ class UserType extends AbstractType
                 'required' => false,
                 'invalid_message' => 'fos_user.password.mismatch',
             ))
-
             ->add('roles', ChoiceType::class, array(
 
-                'choices' =>$array_roles,
+                'choices' => $array_roles,
                 'multiple' => true,
                 'required' => true,
             ))
-
             ->add('phoneNumber', TextType::class, [
                 'label' => 'Phone Number : ',
                 'required' => false,
             ])
-
-
             ->add('enabled', CheckboxType::class, array(
                 'required' => true,
             ))
-
             ->add('file');
     }
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\User'
-        ));
+        $resolver->setDefaults([
+            'data_class' => User::class,
+        ]);
+
     }
-
-    /**
-     * {@inheritdoc}
-     *
-     */
-    public function getBlockPrefix()
-    {
-        return 'appbundle_user';
-    }
-
-
 }

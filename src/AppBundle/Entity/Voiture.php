@@ -73,6 +73,7 @@ class Voiture
 
     public function __construct(){
         $this->locations = new ArrayCollection();
+        $this->caracteristiques = new ArrayCollection();
     }
 
     /**
@@ -200,7 +201,6 @@ class Voiture
         if(empty($image))
             $image = "no_avatar.jpg";
         return $image;
-
     }
 
     /**

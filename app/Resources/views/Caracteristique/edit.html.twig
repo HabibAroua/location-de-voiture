@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+{% block title %}Modifier Caracteristique{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Modifier Caracteristique</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        {{ form_start(form,{'attr': {'class':'form-horizontal form-label-left'}}) }}
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Voiture :<span class="required"> *</span> </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {{ form_widget(form.voiture,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12','id':"name" ,'data-validate-length-range':'2','data-validate-words':'1'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Couleur :<span class="required"> *</span> </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {{ form_widget(form.couleur,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Nombre de chevaux :<span class="required"> *</span> </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {{ form_widget(form.nbrChevaux,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12">Prix :<span class="required"> *</span> </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                {{ form_widget(form.prix,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12'}}) }}
+                            </div>
+                        </div>
+
+                        <div class="ln_solid"></div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-md-offset-3">
+                                <button type="submit" class="btn btn-primary">Annuler</button>
+
+                                <button id="send" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Enregistrer</button>
+                                <a href="{{ path('caracteristiques') }}" id="send" type="button" class="btn btn-warning"><i class="fa fa-mail-reply"></i> Retour à la liste</a>
+                            </div>
+                        </div>
+
+                        {{ form_end(form) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+
+
