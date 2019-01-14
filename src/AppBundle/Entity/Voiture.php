@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Voiture
- *
+ *@ORM\HasLifecycleCallbacks
  * @ORM\Table(name="voiture")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\VoitureRepository")
  */
@@ -190,17 +190,13 @@ class Voiture
         $this->user = $user;
     }
 
-
-
     /**
      * @return mixed
      */
     public function getImage()
     {
-        $image = $this->image;
-        if(empty($image))
-            $image = "no_avatar.jpg";
-        return $image;
+        return $this->image;
+
     }
 
     /**
@@ -211,12 +207,13 @@ class Voiture
         $this->image = $image;
     }
 
+
     /**
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
     public function preUpload() {
-        if (null !== $this->file) {
+        if ($this->file !== null ) {
             // do whatever you want to generate a unique name
             $filename = sha1(uniqid(mt_rand(), true));
             $this->image = $filename . '.' . $this->file->guessExtension();
@@ -234,8 +231,6 @@ class Voiture
             $this->image = 'initial';
         }
     }
-
-
     /**
      * @ORM\PostPersist()
      * @ORM\PostUpdate()
@@ -252,9 +247,23 @@ class Voiture
         // the entity from being persisted to the database on error
         $this->file->move($this->getUploadRootDir(), $this->image);
 
-        unset($this->file);
+        //unset($this->file);
+        $this->file = null;
     }
 
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if(file_exists($this->getAbsoluteimagelink())) {
+            if ($this->getUploadRootDir() . $this->image = $this->getAbsoluteimage()) {
+                unlink($this->image);
+            }
+        }
+
+
+    }
 
     public function getAbsoluteimage()
     {
@@ -275,13 +284,8 @@ class Voiture
     public function getUploadDir()
     {
         // get rid of the __DIR__ so it doesn't screw when displaying uploaded doc/image in the view.
-        return 'uploads/images';
+        return 'uploads';
     }
 
-
-
-
-
-
-    }
+}
 
