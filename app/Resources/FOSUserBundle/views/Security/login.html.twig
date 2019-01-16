@@ -30,17 +30,22 @@
                                         <labe>Remember Me</labe>
 
                                     </div>
-                                    <div class="clearfix"></div>
-
-                                    <div class="separator">
-                                        <div class="clearfix"></div>
-                                        <br />
-                                        <div>
-                                            <p>Habib Rental-Car ©2019 All Rights Reserved</p>
-                                        </div>
-                                    </div>
                                 </form>
+                                <div id="connect_fb">
+                                    <br/>
 
+                                    {% if loginUrl is defined and app.user == null %}
+                                        <a href="{{loginUrl|escape}}">Log in with Facebook!</a>
+                                    {% endif %}
+                                </div>
+                                <div class="clearfix"></div>
+
+                                <div class="separator">
+                                    <div class="clearfix"></div>
+                                    <div>
+                                        <p>Habib Rental-Car ©2019 All Rights Reserved</p>
+                                    </div>
+                                </div>
                             </div>
                         </form>
                     </section>

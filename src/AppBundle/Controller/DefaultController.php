@@ -9,6 +9,46 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 class DefaultController extends Controller
 {
+
+
+
+    /**
+     * @Route("/login", name="login")
+     */
+    public function fbAction(Request $request)
+    {
+
+        $fb_login = $this->get('fb_sdk');
+        $fb = $fb_login->create();
+        $host = $request->getBaseUrl();
+        $loginUrl = $fb_login->redirectLoginHelper->getLoginUrl("http://$host/fb-callback/", ['email']);
+
+        return $this->render('FOSUserBundle:Security:login.html.twig', ['loginUrl' => $loginUrl]);
+    }
+
+    /**
+     * @Route("/fb-callback/", name="fb-callback")
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function fbCallbackAction(Request $request)
+    {
+    }
+
+    /**
+     * @Route("/fb-access", name="fb-access")
+     *
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function fbAccessAction(Request $request)
+    {
+        return $this->render('SuerAdmin/dashbaord.html.twig');
+    }
+
     /**
      * @Route("/", name="homepage")
      */

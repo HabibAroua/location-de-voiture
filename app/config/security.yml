@@ -24,12 +24,16 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+        default:
+          anonymous: ~
+          guard:
+            authenticators:
+              - fb_authenticator
         main:
             pattern: ^/
             form_login:
                 provider: fos_userbundle
-                #default_target_path: /page
+                default_target_path: /page
                 success_handler: redirect.after.login
                 csrf_token_generator: security.csrf.token_manager
 
@@ -52,4 +56,6 @@ security:
             - { path: ^/client/, role: ROLE_CLIENT }
             - { path: ^/manager/, role: ROLE_MANAGER }
             - { path: ^/user/, role: ROLE_USER }
+            - { path: ^/fb-access, roles: ROLE_USER }
+
 

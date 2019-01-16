@@ -2,7 +2,6 @@
 // src/AppBundle/Entity/User.php
 
 namespace AppBundle\Entity;
-
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as FosUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -13,7 +12,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="fos_user")
  */
-
 class User extends FosUser
 {
     /**
@@ -67,6 +65,29 @@ class User extends FosUser
      * @ORM\OneToMany(targetEntity="Voiture", mappedBy="user")
      */
     private $voitures;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fb_id", type="string", length=225, nullable=true)
+     */
+    private $fb_id;
+
+    /**
+     * @return string
+     */
+    public function getFbId()
+    {
+        return $this->fb_id;
+    }
+
+    /**
+     * @param string $fb_id
+     */
+    public function setFbId($fb_id)
+    {
+        $this->fb_id = $fb_id;
+    }
 
     /**
      * @var datetime $created_at
@@ -131,7 +152,7 @@ class User extends FosUser
      */
     public function onPrePersist()
     {
-        $this->created_at = new DateTime("now");
+        $this->created_at = new \DateTime("now");
     }
 
     /**
@@ -142,7 +163,7 @@ class User extends FosUser
     public function onPreUpdate()
     {
 
-        $this->updated_at = new DateTime("now");
+        $this->updated_at = new \DateTime("now");
     }
 
     /**

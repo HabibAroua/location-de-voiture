@@ -4,6 +4,23 @@ parameters:
     #parameter_name: value
 
 services:
+    fb_sdk:
+        class: AppBundle\Utils\Auth\FBSDK
+        public : true
+        arguments:
+            $app_id: '%fb_app_id%'
+            $app_secret: '%fb_app_secret%'
+    fb_authenticator:
+            class: AppBundle\Utils\Auth\FBAuthenticator
+            arguments:
+                - '@doctrine.orm.entity_manager'
+                - "@router"
+                - '@fb_sdk'
+    listener.request:
+            class: AppBundle\EventListener\RequestListener
+            arguments: ['@security.token_storage', '@security.authorization_checker', '@router']
+            tags:
+                - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
 
     redirect.after.login:
         class: AppBundle\Listener\AfterLoginRedirection
