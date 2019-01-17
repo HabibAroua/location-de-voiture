@@ -12,18 +12,18 @@ class DefaultController extends Controller
 
 
 
+
     /**
-     * @Route("/login", name="login")
+     * @Route("/", name="homepage")
      */
     public function fbAction(Request $request)
     {
-
         $fb_login = $this->get('fb_sdk');
         $fb = $fb_login->create();
-        $host = $request->getBaseUrl();
+        $host = $this->getParameter('host');
         $loginUrl = $fb_login->redirectLoginHelper->getLoginUrl("http://$host/fb-callback/", ['email']);
 
-        return $this->render('FOSUserBundle:Security:login.html.twig', ['loginUrl' => $loginUrl]);
+        return $this->render('default/index.html.twig', ['loginUrl' => $loginUrl]);
     }
 
     /**
@@ -38,6 +38,35 @@ class DefaultController extends Controller
     }
 
     /**
+     * @Route("/email", name="email_form")
+     */
+    public function emailFormAction(Request $request)
+    {
+        $user = $this->getUser();
+
+        $form = $this->createForm('AppBundle\Form\User\UserFacebookType', $user);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirectToRoute('homepage', array('id' => $user->getId()));
+        }
+        /*return $this->render('default/form.html.twig', array(
+            'user' => $user,
+            'form' => $form->createView(),
+        ));*/
+    }
+
+
+    /**
+     * @Route("/client", name="client")
+     */
+    public function clientDashboard(){
+        return $this->render('facebook.html.twig');
+    }
+
+    /**
      * @Route("/fb-access", name="fb-access")
      *
      * @param Request $request
@@ -46,18 +75,7 @@ class DefaultController extends Controller
      */
     public function fbAccessAction(Request $request)
     {
-        return $this->render('SuerAdmin/dashbaord.html.twig');
-    }
-
-    /**
-     * @Route("/", name="homepage")
-     */
-    public function indexAction(Request $request)
-    {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+        return $this->render('facebook.html.twig');
     }
 
     /**

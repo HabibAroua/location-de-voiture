@@ -104,10 +104,27 @@
                                     </div>
                                 </div>
                             </li>
-                            <li><a href="{{ path('fos_user_security_login') }}">
+
+                            <li>
+                                <a href="{{ path('fos_user_security_login') }}">
                                     <i class="fa fa-sign-in" aria-hidden="true"></i></a></li>
                             <li><a href="{{ path('fos_user_registration_register') }}">
                                     <i class="fa fa-lock" aria-hidden="true"></i></a></li>
+                            <li>
+                                <div id="connect_fb">
+                                    {% if loginUrl is defined and app.user == null %}
+                                        <a href="{{loginUrl|escape}}">Log in with Facebook!</a>
+                                    {% endif %}
+                                    {% if app.user %}
+                                        <div>
+                                            <div>
+                                                <strong>Hello {{ app.user.username }}</strong>
+                                            </div>
+                                            <div>{{ app.user.email }}</div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </li>
                         </ul>
                         <div class="impl_search_overlay">
                             <div class="impl_search_area">

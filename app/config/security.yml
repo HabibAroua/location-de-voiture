@@ -24,22 +24,25 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        default:
-          anonymous: ~
-          guard:
-            authenticators:
-              - fb_authenticator
+        #default:
+          #anonymous: ~
+          #guard:
+            #authenticators:
+              #- fb_authenticator
         main:
             pattern: ^/
+            guard:
+              authenticators:
+                - fb_authenticator
+            #logout_on_user_change: true
             form_login:
                 provider: fos_userbundle
-                default_target_path: /page
-                success_handler: redirect.after.login
+                login_path:    fos_user_security_login
+                check_path:  fos_user_security_check
                 csrf_token_generator: security.csrf.token_manager
-
+                success_handler: redirect.after.login
             logout:       true
             anonymous:    true
-
 
           # activate different ways to authenticate
 

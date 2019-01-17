@@ -35,6 +35,20 @@ class User extends FosUser
 
 
     /**
+     * @var bool
+     *
+     * @ORM\Column(name="is_active", type="boolean")
+     */
+    private $isActive;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="fb_id", type="string", length=225, nullable=true)
+     */
+    private $fb_id;
+
+    /**
      * @ORM\Column(name="image",type="string", length=255, nullable=true)
      */
     public $image;
@@ -62,16 +76,18 @@ class User extends FosUser
     private $locations;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="role", type="string", length=255)
+     * @Assert\NotBlank()
+     * @Assert\Choice(callback = "getListRoles")
+     */
+    private $role;
+    /**
      * @ORM\OneToMany(targetEntity="Voiture", mappedBy="user")
      */
     private $voitures;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="fb_id", type="string", length=225, nullable=true)
-     */
-    private $fb_id;
 
     /**
      * @return string
@@ -246,7 +262,37 @@ class User extends FosUser
         $this->voitures = $voitures;
     }
 
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->isActive;
+    }
 
+    /**
+     * @param bool $isActive
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRole()
+    {
+        return $this->role;
+    }
+
+    /**
+     * @param string $role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+    }
 
 
 
@@ -257,6 +303,23 @@ class User extends FosUser
     {
         return $this->updated_at;
     }
+
+    /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param string $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
 
     /**
      * @param datetime $updated_at

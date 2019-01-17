@@ -4,6 +4,7 @@ namespace AppBundle\Utils\Auth;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Guard\AbstractGuardAuthenticator;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -83,6 +84,10 @@ class FBAuthenticator extends AbstractGuardAuthenticator
         $user->setEmail($fbuser->getEmail());
         $user->setFbId($fbuser->getId());
         $user->setRole('ROLE_USER');
+        $user->setIsActive(true);
+        /*$plainPassword = '000000';
+        $encoded =  $encoder->encodePassword($user, $plainPassword);*/
+        $user->setPassword("000000");
         $this->entity_manager->persist($user);
         $this->entity_manager->flush();
         return $user;
