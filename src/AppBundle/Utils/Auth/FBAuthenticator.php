@@ -83,8 +83,8 @@ class FBAuthenticator extends AbstractGuardAuthenticator
         $user->setUsername($fbuser->getName());
         $user->setEmail($fbuser->getEmail());
         $user->setFbId($fbuser->getId());
-        $user->setRole('ROLE_USER');
-        $user->setIsActive(true);
+        $user->setRoles(array('ROLE_USER'));
+        $user->setEnabled(true);
         /*$plainPassword = '000000';
         $encoded =  $encoder->encodePassword($user, $plainPassword);*/
         $user->setPassword("000000");

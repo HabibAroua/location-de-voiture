@@ -1,0 +1,114 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ajouter location{% endblock %}
+{% block stylesheets %}
+    <style>
+        .required{
+            color: red;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.8.0/css/bootstrap-datepicker.css">
+
+{% endblock %}
+{% block body %}
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Ajouter Une Location</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    {{ form_start(form,{'attr': {'class':'form-horizontal form-label-left'}}) }}
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Utilisateur :<span class="required"> *</span> </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.user,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12','id':"name" ,'data-validate-length-range':'2','data-validate-words':'1'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Voiture :<span class="required"> *</span> </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.voiture,{'attr': {'class':'form-control col-md-7 col-sm-7 col-xs-12'}}) }}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Date de location :<span class="required"> *</span> </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            {{ form_widget(form.date, {'attr' :{'class' : 'form-control col-md-7 col-xs-12'}})}}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Période de location : <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" class="form-control " id="beginDate"  required>
+                            <input type="hidden" class="form-control " id="begin" name="date_debut" >
+                            <input type="hidden" class="form-control " id="end" name="date_fin" >
+                        </div>
+                    </div>
+
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                            <button type="submit" class="btn btn-primary">Annuler</button>
+
+                            <button id="send" type="submit" class="btn btn-success"><i class="fa fa-save"></i> Enregistrer</button>
+                            <a href="{{ path('Locations') }}" id="send" type="button" class="btn btn-warning"><i class="fa fa-mail-reply"></i> Retour à la liste</a>
+                        </div>
+                    </div>
+
+                    {{ form_end(form) }}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock body %}
+
+{% block javascripts%}
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js" integrity="sha256-eGE6blurk5sHj+rmkfsGYeKyZx3M4bG+ZlFyA7Kns7E=" crossorigin="anonymous"></script>
+    <script>
+        $('document').ready(function () {
+            $("#datetime1").datepicker({
+                dateFormat : 'yy-mm-dd',
+            });
+
+            $("#datetime2").datepicker({
+                dateFormat: 'yy-mm-dd' ,
+            });
+        })
+
+
+        $("#beginDate").daterangepicker({
+            autoUpdateInput: false,
+            autoApply: true,
+            timePicker24Hour: true,
+            timePicker: true,
+            minDate: new Date(),
+            locale: {
+                format: "YYYY-MM-DD HH:mm"
+            }
+        }, function(start, end, label) {
+            $('#beginDate').val(start.format('YYYY-MM-DD HH:mm') + ' - ' + end.format('YYYY-MM-DD HH:mm'));
+            $('#begin').val(start.format('YYYY-MM-DD HH:mm'));
+            $('#end').val(end.format('YYYY-MM-DD HH:mm'));
+        });
+
+    </script>
+
+{% endblock %}
+

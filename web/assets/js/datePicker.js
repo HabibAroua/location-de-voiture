@@ -3,8 +3,8 @@ $(function () {
 
     $("#datetime1").datepicker({
         dateFormat : 'yy-mm-dd',
-        minDate :2,
-        beforeShowDay: noWeekendsOrHolidays
+      //  minDate :2,
+    //    beforeShowDay: noWeekendsOrHolidays
 
     });
     function noWeekendsOrHolidays(selDate) {
@@ -52,7 +52,7 @@ $(function () {
 
     $("#datetime2").datepicker({
         dateFormat: 'yy-mm-dd' ,
-        minDate :  2,
-        beforeShowDay:  noWeekendsOrHolidays
+       // minDate :  2,
+        //beforeShowDay:  noWeekendsOrHolidays
     });
 });
