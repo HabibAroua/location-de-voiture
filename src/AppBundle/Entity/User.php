@@ -35,13 +35,6 @@ class User extends FosUser
 
 
     /**
-     * @var bool
-     *
-     * @ORM\Column(name="is_active", type="boolean")
-     */
-    private $isActive;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="fb_id", type="string", length=225, nullable=true)
@@ -262,21 +255,6 @@ class User extends FosUser
         $this->voitures = $voitures;
     }
 
-    /**
-     * @return bool
-     */
-    public function isActive()
-    {
-        return $this->isActive;
-    }
-
-    /**
-     * @param bool $isActive
-     */
-    public function setIsActive($isActive)
-    {
-        $this->isActive = $isActive;
-    }
 
     /**
      * @return string
