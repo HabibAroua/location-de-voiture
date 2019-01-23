@@ -68,7 +68,10 @@ class User extends FosUser
      */
     private $locations;
 
+<<<<<<< HEAD
    
+=======
+>>>>>>> 1f40aaf99faf925f0f1205a6e8404a5af3ca3d3b
     /**
      * @ORM\OneToMany(targetEntity="Voiture", mappedBy="user")
      */
@@ -249,7 +252,10 @@ class User extends FosUser
     }
 
 
+<<<<<<< HEAD
    
+=======
+>>>>>>> 1f40aaf99faf925f0f1205a6e8404a5af3ca3d3b
 
 
     /**

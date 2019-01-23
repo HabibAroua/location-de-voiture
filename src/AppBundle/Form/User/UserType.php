@@ -23,8 +23,12 @@ class UserType extends AbstractType
     {
         $user = $options["data"];
         $roles = $user->getRoles();
+        dump($roles);
+        die();
         $array_roles = [];
-        $array_roles = ["MANAGER" => "ROLE_MANAGER", "CLIENT" => "ROLE_CLIENT"];
+        if(in_array("ROLE_SUPER_ADMIN",$roles)) {
+            $array_roles = ["MANAGER" => "ROLE_MANAGER", "CLIENT" => "ROLE_CLIENT"];
+        }
 
         $builder
             ->add('username', TextType::class, [
@@ -61,7 +65,11 @@ class UserType extends AbstractType
             ))
             ->add('roles', ChoiceType::class, array(
 
-                'choices' => $array_roles,
+                'choices' => [
+                    "MANAGER" => "ROLE_MANAGER",
+                    "CLIENT" => "ROLE_CLIENT"
+
+                ],
                 'multiple' => true,
                 'required' => true,
             ))

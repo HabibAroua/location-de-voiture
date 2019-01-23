@@ -128,12 +128,7 @@ class DefaultController extends Controller
     }
 
 
-    /**
-     * @Route("/client", name="client")
-     */
-    public function clientDashboard(){
-        return $this->render('facebook.html.twig');
-    }
+
 
     /**
      * @Route("/fb-access", name="fb-access")
@@ -175,6 +170,8 @@ class DefaultController extends Controller
     {
         $this->denyAccessUnlessGranted('ROLE_MANAGER');
         // replace this example code with whatever you need
+        return $this->render('Manager/dashboard.html.twig');
+
     }
 
         /**

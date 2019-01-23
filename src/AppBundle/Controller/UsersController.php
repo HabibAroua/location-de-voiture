@@ -67,10 +67,7 @@ class UsersController extends Controller
         //$user->setRoles($this->getUser()->getRoles());
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-      
-        if ($form->isSubmitted() && $form->isValid())
-        {
-            
+        if ($form->isSubmitted() && $form->isValid()) {
             $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
                 ->setUsername($myappContactMail)
                 ->setPassword($myappContactPassword)
