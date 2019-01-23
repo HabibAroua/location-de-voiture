@@ -27,7 +27,7 @@ class UsersController extends Controller
         $query = $em->createQuery('SELECT u.id, u.username, u.email, u.phoneNumber, u.roles FROM AppBundle:User u where u.roles LIKE :role')
             ->setParameter('role', '%"ROLE_MANAGER"%');
         $managers = $query->getResult();
-        return $this->render('manager/index.html.twig', array(
+        return $this->render('Manager/index.html.twig', array(
             'managers' => $managers,
         ));
     }
@@ -70,6 +70,7 @@ class UsersController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $transport = \Swift_SmtpTransport::newInstance('smtp.gmail.com', 465,'ssl')
 
                 ->setUsername($myappContactMail)

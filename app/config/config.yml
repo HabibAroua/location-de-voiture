@@ -62,12 +62,15 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    port:       465
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
-    spool:     { type: memory }
+    transport: '%mailer_transport%'
+    auth_mode: '%mailer_auth_mode%'
+    host: '%mailer_host%'
+    port: '%mailer_port%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    encryption: '%mailer_encryption%'
+    spool: { type: memory }
+
 #fosUser    
 fos_user:
     ## Your configuration for FOS
@@ -75,6 +78,14 @@ fos_user:
     firewall_name: main
     user_class: AppBundle\Entity\User
     from_email:
-            address: "cherniyosser95@gmail.com"
-            sender_name: "No Reply"
-
+        address: "cherniyosser95@gmail.com"
+        sender_name: "No Reply"
+    service:
+         mailer: fos_user.mailer.twig_swift
+    registration:
+          confirmation:
+                enabled: true
+                from_email:
+                    address: "noreply@monsiteweb.com"
+                    sender_name: "Admin du test"
+                template: 'Email\confirmation.email.twig'

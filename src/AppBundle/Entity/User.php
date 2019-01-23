@@ -69,14 +69,6 @@ class User extends FosUser
     private $locations;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="role", type="string", length=255)
-     * @Assert\NotBlank()
-     * @Assert\Choice(callback = "getListRoles")
-     */
-    private $role;
-    /**
      * @ORM\OneToMany(targetEntity="Voiture", mappedBy="user")
      */
     private $voitures;
@@ -255,22 +247,6 @@ class User extends FosUser
         $this->voitures = $voitures;
     }
 
-
-    /**
-     * @return string
-     */
-    public function getRole()
-    {
-        return $this->role;
-    }
-
-    /**
-     * @param string $role
-     */
-    public function setRole($role)
-    {
-        $this->role = $role;
-    }
 
 
 

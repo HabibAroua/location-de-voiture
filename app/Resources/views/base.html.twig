@@ -79,6 +79,7 @@
                     <div class="menu_section">
 
                         <ul class="nav side-menu">
+                            {% if is_granted('ROLE_SUPER_ADMIN')%}
                                 <li><a href="{{ path('AdminPage') }}"><i class="fa fa-home"></i>Dashbooard </a></li>
                                 <li>
                                     <a><i class="fa fa-user icon-menu"></i>  Gestion des utilisateurs <span class="fa fa-chevron-down"></span></a>
@@ -97,6 +98,22 @@
                                 <li>
                                     <a href="{{ path('Locations') }}"><i class="fa fa-sticky-note"></i>Gestion Des location </a>
                                 </li>
+                            {% elseif (is_granted('ROLE_MANAGER')) %}
+                                <li><a href="{{ path('ManagerPage') }}"><i class="fa fa-home"></i>Dashbooard </a></li>
+
+                                <li><a href="{{ path('Voiture') }}"><i  class="fa fa-users icon-menu"></i> Gestion des voitures </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('caracteristiques') }}"><i class="fa fa-share icon-menu"></i> Gestion des carateristiques </a>
+                            </li>
+                            <li>
+                                <a href="{{ path('Locations') }}"><i class="fa fa-sticky-note"></i>Gestion Des location </a>
+                            </li>
+                            {% else %}
+                            <li>
+                                <a href="{{ path('Locations') }}"><i class="fa fa-sticky-note"></i>Gestion Des location </a>
+                            </li>
+                            {% endif %}
                         </ul>
                     </div>
 
