@@ -17,13 +17,17 @@ class DefaultController extends Controller
      */
     public function fbAction(Request $request)
     {
+       
         $fb_login = $this->get('fb_sdk');
         $fb = $fb_login->create();
+    
         $host = $this->getParameter('host');
+        
         $loginUrl = $fb_login->redirectLoginHelper->getLoginUrl("http://$host/fb-callback/", ['email']);
         $voitures = $this->getDoctrine()->getRepository(Voiture::class)->findAll();
         $caracteristiques = $this->getDoctrine()->getRepository(Caracteristique::class)->findAll();
-        return $this->render('default/index.html.twig', ['voitures'=>$voitures,'caracteristiques'=>$caracteristiques,'loginUrl' => $loginUrl]);
+        return $this->render('default/index.html.twig', ['voitures'=>$voitures,
+                                'caracteristiques'=>$caracteristiques,'loginUrl' => $loginUrl]);
     }
 
     /**
